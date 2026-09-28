@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 public class StreakController {
 
     private final StreakService service;
-
     public StreakController(StreakService service) {
         this.service=service;
     }

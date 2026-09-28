@@ -32,4 +32,5 @@ public class StreakService {
 
         return repository.save(streak);
     }
+
 }

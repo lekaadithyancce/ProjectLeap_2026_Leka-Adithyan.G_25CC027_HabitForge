@@ -5,7 +5,6 @@ import com.example.HabitForge.repository.CompletionLogRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
 public class CompletionLogService {
     private final CompletionLogRepository repository;

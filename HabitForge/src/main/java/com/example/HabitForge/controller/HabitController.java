@@ -31,4 +31,5 @@ public String deleteHabit(@PathVariable Long id)
 service.deleteHabit(id);
 return "habit deleted";
 }
+
 }

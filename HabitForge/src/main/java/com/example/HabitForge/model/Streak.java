@@ -39,7 +39,6 @@ public class Streak {
     public void setHabitId(Long habitId) {
         this.habitId=habitId;
     }
-
     public void setCurrentStreak(int currentStreak) {
         this.currentStreak=currentStreak;
     }

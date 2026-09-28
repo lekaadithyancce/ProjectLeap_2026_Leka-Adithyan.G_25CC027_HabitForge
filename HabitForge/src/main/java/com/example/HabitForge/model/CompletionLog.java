@@ -32,7 +32,6 @@ public class CompletionLog {
     }
     public LocalDate getCompletionDate()
     {
-
         return completionDate;
     }
     public void setCompletionDate(LocalDate completionDate)
