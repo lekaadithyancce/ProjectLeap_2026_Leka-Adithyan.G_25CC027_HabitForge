@@ -9,16 +9,15 @@ import java.util.List;
 @Service
 public class CompletionLogService {
     private final CompletionLogRepository repository;
-    public CompletionLogService(CompletionLogService repository)
-    {
+    public CompletionLogService(CompletionLogRepository repository) {
         this.repository=repository;
     }
     public CompletionLog addLog(CompletionLog log)
     {
-        repository.save(log);
+        return repository.save(log);
     }
     public List<CompletionLog> getLog()
     {
-        repository.findAll();
+        return repository.findAll();
     }
 }
