@@ -1,43 +1,144 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Track Streak</title>
+    <title>Track Streak - HabitForge</title>
     <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
 
-<header>
-    <h1>Track Streak</h1>
-    <p>Monitor your habit consistency</p>
-</header>
+<div class="app">
 
-<div class="container">
+    <aside class="sidebar">
 
-    <div class="form-card">
-        <h2>Update Streak</h2>
+        <div class="logo">
+            <div class="logo-box">H</div>
+            <div>
+                <h2>HabitForge</h2>
+                <span>Consistency tracker</span>
+            </div>
+        </div>
 
-        <input type="number" id="habitId" placeholder="Habit ID">
-        <input type="number" id="currentStreak" placeholder="Current Streak">
+        <div class="nav-title">Menu</div>
 
-        <button onclick="updateStreak()">Update</button>
+        <nav class="nav">
+            <a href="/index.html">⌂ Dashboard</a>
+            <a href="/habit.html">✓ Manage Habits</a>
+            <a href="/streak.html" class="active">🔥 Track Streak</a>
+        </nav>
 
-        <div id="result"></div>
-    </div>
+    </aside>
 
-    <a class="back" href="/index.html">Back to Home</a>
+    <main class="main">
+
+        <div class="topbar">
+            <div>
+                <h1>Track Streak</h1>
+                <p>Monitor your habit consistency.</p>
+            </div>
+        </div>
+
+        <div class="panel form-panel">
+
+            <div class="panel-header">
+                <h2>Update Streak</h2>
+            </div>
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label>Habit ID</label>
+                    <input
+                            type="number"
+                            id="habitId"
+                            placeholder="Example: 1"
+                            min="1">
+                </div>
+
+                <div class="input-group">
+                    <label>Current Streak</label>
+                    <input
+                            type="number"
+                            id="currentStreak"
+                            placeholder="Example: 20"
+                            min="0">
+                </div>
+
+            </div>
+
+            <button class="primary-btn" onclick="updateStreak()">
+                Update Streak
+            </button>
+
+            <div id="result" class="result"></div>
+
+        </div>
+
+        <div class="panel" style="margin-top:22px;">
+
+            <div class="panel-header">
+                <h2>Streak Information</h2>
+            </div>
+
+            <div class="stats">
+
+                <div class="card">
+                    <div class="stat-top">
+                        <span class="stat-label">
+                            Current Streak
+                        </span>
+
+                        <div class="stat-icon">
+                            🔥
+                        </div>
+                    </div>
+
+                    <h3 id="currentValue">-</h3>
+                    <span class="stat-note">Days</span>
+                </div>
+
+                <div class="card">
+                    <div class="stat-top">
+                        <span class="stat-label">
+                            Best Streak
+                        </span>
+
+                        <div class="stat-icon">
+                            🏆
+                        </div>
+                    </div>
+
+                    <h3 id="bestValue">-</h3>
+                    <span class="stat-note">Personal record</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <a class="back" href="/index.html">
+            ← Back to Dashboard
+        </a>
+
+    </main>
 
 </div>
 
 <script>
+
     function updateStreak() {
 
         let habitId=document.getElementById("habitId").value;
         let currentStreak=document.getElementById("currentStreak").value;
 
+        if(habitId===""||currentStreak==="") {
+            alert("Please enter Habit ID and Current Streak");
+            return;
+        }
+
         let streak={
             habitId:parseInt(habitId),
-            currentStreak:parseInt(currentStreak),
-            bestStreak:0
+            currentStreak:parseInt(currentStreak)
         };
 
         fetch("/streaks",{
@@ -47,18 +148,58 @@
             },
             body:JSON.stringify(streak)
         })
-            .then(response=>response.json())
+            .then(response=>{
+
+                if(!response.ok) {
+                    throw new Error("Unable to update streak");
+                }
+
+                return response.json();
+            })
             .then(data=>{
 
-                document.getElementById("result").innerHTML=
-                    "<div class='streak-result'>" +
-                    "<h3>Streak Updated!</h3>" +
-                    "<p>Current Streak: " + data.currentStreak + "</p>" +
-                    "<p>Best Streak: " + data.bestStreak + "</p>" +
-                    "</div>";
+                document.getElementById("currentValue").innerText=
+                    data.currentStreak;
 
+                document.getElementById("bestValue").innerText=
+                    data.bestStreak;
+
+                document.getElementById("result").innerHTML=`
+
+            <div class="result-card">
+
+                <h3>Streak Updated!</h3>
+
+                <p>
+                    Current Streak:
+                    <strong>${data.currentStreak}</strong>
+                </p>
+
+                <p>
+                    Best Streak:
+                    <strong>${data.bestStreak}</strong>
+                </p>
+
+            </div>
+
+        `;
+            })
+            .catch(error=>{
+
+                document.getElementById("result").innerHTML=`
+
+            <div class="result-card">
+
+                <h3>Update Failed</h3>
+
+                <p>${error.message}</p>
+
+            </div>
+
+        `;
             });
     }
+
 </script>
 
 </body>

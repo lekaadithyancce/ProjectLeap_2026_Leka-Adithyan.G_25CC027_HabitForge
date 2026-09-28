@@ -15,9 +15,20 @@ public class StreakService {
 
     public Streak updateStreak(Streak streak) {
 
-        if(streak.getCurrentStreak()>streak.getBestStreak()) {
-            streak.setBestStreak(streak.getCurrentStreak());
+        Streak oldStreak=repository.findFirstByHabitIdOrderByIdAsc(streak.getHabitId()).orElse(null);
+
+        if(oldStreak!=null) {
+
+            oldStreak.setCurrentStreak(streak.getCurrentStreak());
+
+            if(streak.getCurrentStreak()>oldStreak.getBestStreak()) {
+                oldStreak.setBestStreak(streak.getCurrentStreak());
+            }
+
+            return repository.save(oldStreak);
         }
+
+        streak.setBestStreak(streak.getCurrentStreak());
 
         return repository.save(streak);
     }

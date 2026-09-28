@@ -26,7 +26,7 @@ public class CompletionLog {
     {
         return habitId;
     }
-    public void setHabitId(Long id)
+    public void setHabitId(Long habitId)
     {
         this.habitId=habitId;
     }

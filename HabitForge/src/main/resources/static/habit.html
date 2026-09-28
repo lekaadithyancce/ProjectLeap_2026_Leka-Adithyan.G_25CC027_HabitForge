@@ -1,56 +1,125 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Manage Habits</title>
+    <title>Manage Habits - HabitForge</title>
     <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
 
-<header>
-    <h1>Manage Habits</h1>
-    <p>Add and view your daily habits</p>
-</header>
+<div class="app">
 
-<div class="container">
+    <aside class="sidebar">
 
-    <div class="form-card">
-        <h2>Add New Habit</h2>
+        <div class="logo">
+            <div class="logo-box">H</div>
+            <div>
+                <h2>HabitForge</h2>
+                <span>Consistency tracker</span>
+            </div>
+        </div>
 
-        <input type="text" id="name" placeholder="Enter habit name">
-        <input type="text" id="frequency" placeholder="Daily / Weekly">
+        <div class="nav-title">Menu</div>
 
-        <button onclick="addHabit()">Add Habit</button>
-    </div>
+        <nav class="nav">
+            <a href="/index.html">⌂ Dashboard</a>
+            <a href="/habit.html" class="active">✓ Manage Habits</a>
+            <a href="/streak.html">🔥 Track Streak</a>
+        </nav>
 
-    <div class="habit-list">
-        <h2>My Habits</h2>
-        <div id="habits"></div>
-    </div>
+    </aside>
 
-    <a class="back" href="/index.html">Back to Home</a>
+    <main class="main">
+
+        <div class="topbar">
+            <div>
+                <h1>Manage Habits</h1>
+                <p>Create and manage your daily habits.</p>
+            </div>
+        </div>
+
+        <div class="panel form-panel">
+
+            <div class="panel-header">
+                <h2>Create New Habit</h2>
+            </div>
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label>Habit Name</label>
+                    <input
+                            type="text"
+                            id="name"
+                            placeholder="Example: Exercise">
+                </div>
+
+                <div class="input-group">
+                    <label>Frequency</label>
+                    <input
+                            type="text"
+                            id="frequency"
+                            placeholder="Example: Daily">
+                </div>
+
+            </div>
+
+            <button class="primary-btn" onclick="addHabit()">
+                Add Habit
+            </button>
+
+        </div>
+
+        <div class="panel" style="margin-top:22px;">
+
+            <div class="panel-header">
+                <h2>My Habits</h2>
+            </div>
+
+            <div id="habits"></div>
+
+        </div>
+
+        <a class="back" href="/index.html">
+            ← Back to Dashboard
+        </a>
+
+    </main>
 
 </div>
 
 <script>
+
     function addHabit() {
 
-        let habit = {
-            name: document.getElementById("name").value,
-            frequency: document.getElementById("frequency").value
+        let name=document.getElementById("name").value;
+        let frequency=document.getElementById("frequency").value;
+
+        if(name===""||frequency==="") {
+            alert("Please enter habit name and frequency");
+            return;
+        }
+
+        let habit={
+            name:name,
+            frequency:frequency
         };
 
-        fetch("/habits", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
+        fetch("/habits",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
             },
-            body: JSON.stringify(habit)
+            body:JSON.stringify(habit)
         })
-            .then(response => response.json())
-            .then(data => {
+            .then(response=>response.json())
+            .then(data=>{
+
                 alert("Habit added successfully");
-                document.getElementById("name").value = "";
-                document.getElementById("frequency").value = "";
+
+                document.getElementById("name").value="";
+                document.getElementById("frequency").value="";
+
                 loadHabits();
             });
     }
@@ -58,25 +127,52 @@
     function loadHabits() {
 
         fetch("/habits")
-            .then(response => response.json())
-            .then(data => {
+            .then(response=>response.json())
+            .then(data=>{
 
-                let output = "";
+                let output="";
 
-                data.forEach(habit => {
+                if(data.length===0) {
+                    output="<p style='color:#8b93a7;'>No habits added yet.</p>";
+                }
+
+                data.forEach(habit=>{
+
                     output += `
-                <div class="habit">
-                    <span>${habit.name}</span>
-                    <span>${habit.frequency}</span>
+                <div class="habit-row">
+
+                    <div class="habit-left">
+
+                        <div class="habit-icon">
+                            ✓
+                        </div>
+
+                        <div>
+                            <div class="habit-name">
+                                ${habit.name}
+                            </div>
+
+                            <div class="habit-meta">
+                                ${habit.frequency}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <span style="color:#67e8f9;">
+                        Active
+                    </span>
+
                 </div>
             `;
                 });
 
-                document.getElementById("habits").innerHTML = output;
+                document.getElementById("habits").innerHTML=output;
             });
     }
 
     loadHabits();
+
 </script>
 
 </body>
