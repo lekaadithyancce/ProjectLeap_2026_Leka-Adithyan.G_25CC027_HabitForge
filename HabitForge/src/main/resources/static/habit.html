@@ -1,179 +1,203 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Manage Habits - HabitForge</title>
-    <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Habits | HabitForge</title>
+
+    <link rel="stylesheet"
+          href="/css/style.css">
 </head>
 
 <body>
 
-<div class="app">
+<header class="topbar">
 
-    <aside class="sidebar">
+    <div class="brand">
+        <div class="brand-icon">H</div>
 
-        <div class="logo">
-            <div class="logo-box">H</div>
-            <div>
-                <h2>HabitForge</h2>
-                <span>Consistency tracker</span>
-            </div>
+        <div>
+            <h1>HabitForge</h1>
+            <span>Build better habits</span>
         </div>
+    </div>
 
-        <div class="nav-title">Menu</div>
+    <nav class="navigation">
 
-        <nav class="nav">
-            <a href="/index.html">⌂ Dashboard</a>
-            <a href="/habit.html" class="active">✓ Manage Habits</a>
-            <a href="/streak.html">🔥 Track Streak</a>
-        </nav>
-
-    </aside>
-
-    <main class="main">
-
-        <div class="topbar">
-            <div>
-                <h1>Manage Habits</h1>
-                <p>Create and manage your daily habits.</p>
-            </div>
-        </div>
-
-        <div class="panel form-panel">
-
-            <div class="panel-header">
-                <h2>Create New Habit</h2>
-            </div>
-
-            <div class="form-grid">
-
-                <div class="input-group">
-                    <label>Habit Name</label>
-                    <input
-                            type="text"
-                            id="name"
-                            placeholder="Example: Exercise">
-                </div>
-
-                <div class="input-group">
-                    <label>Frequency</label>
-                    <input
-                            type="text"
-                            id="frequency"
-                            placeholder="Example: Daily">
-                </div>
-
-            </div>
-
-            <button class="primary-btn" onclick="addHabit()">
-                Add Habit
-            </button>
-
-        </div>
-
-        <div class="panel" style="margin-top:22px;">
-
-            <div class="panel-header">
-                <h2>My Habits</h2>
-            </div>
-
-            <div id="habits"></div>
-
-        </div>
-
-        <a class="back" href="/index.html">
-            ← Back to Dashboard
+        <a href="/index.html">
+            Dashboard
         </a>
 
-    </main>
+        <a href="/habit.html"
+           class="active">
+            Habits
+        </a>
 
-</div>
+        <a href="/streak.html">
+            Streaks
+        </a>
 
-<script>
+    </nav>
 
-    function addHabit() {
+</header>
 
-        let name=document.getElementById("name").value;
-        let frequency=document.getElementById("frequency").value;
 
-        if(name===""||frequency==="") {
-            alert("Please enter habit name and frequency");
-            return;
-        }
+<main class="page">
 
-        let habit={
-            name:name,
-            frequency:frequency
-        };
+    <section class="page-header">
 
-        fetch("/habits",{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify(habit)
-        })
-            .then(response=>response.json())
-            .then(data=>{
+        <div>
 
-                alert("Habit added successfully");
+            <p class="eyebrow">
+                HABIT MANAGEMENT
+            </p>
 
-                document.getElementById("name").value="";
-                document.getElementById("frequency").value="";
+            <h2>
+                Manage Habits
+            </h2>
 
-                loadHabits();
-            });
-    }
+            <p>
+                Create, organize, and maintain
+                your daily routines.
+            </p>
 
-    function loadHabits() {
+        </div>
 
-        fetch("/habits")
-            .then(response=>response.json())
-            .then(data=>{
+    </section>
 
-                let output="";
 
-                if(data.length===0) {
-                    output="<p style='color:#8b93a7;'>No habits added yet.</p>";
-                }
+    <section class="habit-card">
 
-                data.forEach(habit=>{
+        <div class="card-header">
 
-                    output += `
-                <div class="habit-row">
+            <div>
+                <h3>
+                    Create New Habit
+                </h3>
 
-                    <div class="habit-left">
+                <p>
+                    Add a habit you want to
+                    build consistently.
+                </p>
+            </div>
 
-                        <div class="habit-icon">
-                            ✓
-                        </div>
+        </div>
 
-                        <div>
-                            <div class="habit-name">
-                                ${habit.name}
-                            </div>
 
-                            <div class="habit-meta">
-                                ${habit.frequency}
-                            </div>
-                        </div>
+        <div class="form-grid">
 
-                    </div>
+            <div class="form-group">
 
-                    <span style="color:#67e8f9;">
-                        Active
-                    </span>
+                <label for="name">
+                    Habit Name
+                </label>
 
-                </div>
-            `;
-                });
+                <input
+                        type="text"
+                        id="name"
+                        placeholder="e.g. Read a book"
+                        autocomplete="off"
+                >
 
-                document.getElementById("habits").innerHTML=output;
-            });
-    }
+            </div>
 
-    loadHabits();
 
-</script>
+            <div class="form-group">
+
+                <label for="frequency">
+                    Frequency
+                </label>
+
+                <select id="frequency">
+
+                    <option value="Daily">
+                        Daily
+                    </option>
+
+                    <option value="Weekly">
+                        Weekly
+                    </option>
+
+                    <option value="Weekdays">
+                        Weekdays
+                    </option>
+
+                    <option value="Monthly">
+                        Monthly
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="button-wrapper">
+
+                <button
+                        type="button"
+                        id="addBtn"
+                        class="primary-btn">
+
+                    + Add Habit
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="habit-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+                    My Habits
+                </h3>
+
+                <p>
+                    Your currently active habits
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div id="habits"
+             class="habits-list">
+
+            <div class="empty">
+                Loading habits…
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        © 2026 HabitForge · Build consistency every day
+    </p>
+
+</footer>
+
+
+<script src="/js/api.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/habits.js"></script>
 
 </body>
 

@@ -1,104 +1,205 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Track Streak - HabitForge</title>
-    <link rel="stylesheet" href="/style.css">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HabitForge — Track Streak</title>
+
+    <link rel="stylesheet"
+          href="/css/style.css">
+
 </head>
+
 
 <body>
 
 <div class="app">
 
+
+    <!-- SIDEBAR -->
     <aside class="sidebar">
 
         <div class="logo">
-            <div class="logo-box">H</div>
-            <div>
-                <h2>HabitForge</h2>
-                <span>Consistency tracker</span>
+
+            <div class="logo-box">
+                H
             </div>
+
+            <div>
+
+                <h2>
+                    HabitForge
+                </h2>
+
+                <span>
+                    Consistency tracker
+                </span>
+
+            </div>
+
         </div>
 
-        <div class="nav-title">Menu</div>
+
+        <div class="nav-title">
+            MENU
+        </div>
+
 
         <nav class="nav">
-            <a href="/index.html">⌂ Dashboard</a>
-            <a href="/habit.html">✓ Manage Habits</a>
-            <a href="/streak.html" class="active">🔥 Track Streak</a>
+
+            <a href="/index.html">
+                ⌂ Dashboard
+            </a>
+
+            <a href="/habit.html">
+                ✓ Manage Habits
+            </a>
+
+            <a href="/streak.html"
+               class="active">
+
+                🔥 Track Streak
+
+            </a>
+
         </nav>
 
     </aside>
 
+
+    <!-- MAIN -->
     <main class="main">
 
+
         <div class="topbar">
+
             <div>
-                <h1>Track Streak</h1>
-                <p>Monitor your habit consistency.</p>
+
+                <h1>
+                    Track Streak
+                </h1>
+
+                <p>
+                    Monitor your habit consistency
+                    and personal records.
+                </p>
+
             </div>
+
         </div>
 
+
+        <!-- UPDATE STREAK -->
         <div class="panel form-panel">
 
             <div class="panel-header">
-                <h2>Update Streak</h2>
+
+                <h2>
+                    Update Streak
+                </h2>
+
             </div>
+
 
             <div class="form-grid">
 
-                <div class="input-group">
-                    <label>Habit ID</label>
-                    <input
-                            type="number"
-                            id="habitId"
-                            placeholder="Example: 1"
-                            min="1">
-                </div>
 
                 <div class="input-group">
-                    <label>Current Streak</label>
+
+                    <label for="habitSelect">
+                        Habit
+                    </label>
+
+                    <select id="habitSelect">
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="currentStreak">
+                        Current Streak
+                    </label>
+
                     <input
                             type="number"
                             id="currentStreak"
-                            placeholder="Example: 20"
-                            min="0">
+                            min="0"
+                            placeholder="Example: 20">
+
                 </div>
 
             </div>
 
-            <button class="primary-btn" onclick="updateStreak()">
+
+            <button
+                    class="primary-btn"
+                    id="updateBtn">
+
                 Update Streak
+
             </button>
 
-            <div id="result" class="result"></div>
+
+            <div id="result"
+                 class="result">
+            </div>
 
         </div>
 
-        <div class="panel" style="margin-top:22px;">
+
+        <!-- STREAK INFORMATION -->
+        <div class="panel"
+             style="margin-top:22px">
 
             <div class="panel-header">
-                <h2>Streak Information</h2>
+
+                <h2>
+                    Streak Information
+                </h2>
+
             </div>
 
-            <div class="stats">
+
+            <div class="stats"
+                 style="grid-template-columns:repeat(2,1fr)">
+
 
                 <div class="card">
+
                     <div class="stat-top">
+
                         <span class="stat-label">
-                            Current Streak
+                            Saved Current Streak
                         </span>
 
                         <div class="stat-icon">
                             🔥
                         </div>
+
                     </div>
 
-                    <h3 id="currentValue">-</h3>
-                    <span class="stat-note">Days</span>
+                    <h3 id="currentValue">
+                        -
+                    </h3>
+
+                    <span class="stat-note">
+                        Days
+                    </span>
+
                 </div>
 
+
                 <div class="card">
+
                     <div class="stat-top">
+
                         <span class="stat-label">
                             Best Streak
                         </span>
@@ -106,102 +207,58 @@
                         <div class="stat-icon">
                             🏆
                         </div>
+
                     </div>
 
-                    <h3 id="bestValue">-</h3>
-                    <span class="stat-note">Personal record</span>
+                    <h3 id="bestValue">
+                        -
+                    </h3>
+
+                    <span class="stat-note">
+                        Personal record
+                    </span>
+
                 </div>
+
 
             </div>
 
         </div>
 
-        <a class="back" href="/index.html">
+
+        <!-- ALL HABITS -->
+        <div class="panel"
+             style="margin-top:22px">
+
+            <div class="panel-header">
+
+                <h2>
+                    All Habits
+                </h2>
+
+            </div>
+
+            <div id="streakList">
+            </div>
+
+        </div>
+
+
+        <a class="back"
+           href="/index.html">
+
             ← Back to Dashboard
+
         </a>
 
     </main>
 
 </div>
 
-<script>
 
-    function updateStreak() {
-
-        let habitId=document.getElementById("habitId").value;
-        let currentStreak=document.getElementById("currentStreak").value;
-
-        if(habitId===""||currentStreak==="") {
-            alert("Please enter Habit ID and Current Streak");
-            return;
-        }
-
-        let streak={
-            habitId:parseInt(habitId),
-            currentStreak:parseInt(currentStreak)
-        };
-
-        fetch("/streaks",{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify(streak)
-        })
-            .then(response=>{
-
-                if(!response.ok) {
-                    throw new Error("Unable to update streak");
-                }
-
-                return response.json();
-            })
-            .then(data=>{
-
-                document.getElementById("currentValue").innerText=
-                    data.currentStreak;
-
-                document.getElementById("bestValue").innerText=
-                    data.bestStreak;
-
-                document.getElementById("result").innerHTML=`
-
-            <div class="result-card">
-
-                <h3>Streak Updated!</h3>
-
-                <p>
-                    Current Streak:
-                    <strong>${data.currentStreak}</strong>
-                </p>
-
-                <p>
-                    Best Streak:
-                    <strong>${data.bestStreak}</strong>
-                </p>
-
-            </div>
-
-        `;
-            })
-            .catch(error=>{
-
-                document.getElementById("result").innerHTML=`
-
-            <div class="result-card">
-
-                <h3>Update Failed</h3>
-
-                <p>${error.message}</p>
-
-            </div>
-
-        `;
-            });
-    }
-
-</script>
+<script src="/js/api.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/streaks.js"></script>
 
 </body>
-
 </html>

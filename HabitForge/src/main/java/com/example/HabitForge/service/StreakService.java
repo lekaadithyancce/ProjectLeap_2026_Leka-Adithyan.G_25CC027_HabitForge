@@ -4,6 +4,8 @@ import com.example.HabitForge.model.Streak;
 import com.example.HabitForge.repository.StreakRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StreakService {
 
@@ -31,6 +33,11 @@ public class StreakService {
         streak.setBestStreak(streak.getCurrentStreak());
 
         return repository.save(streak);
+    }
+
+
+    public List<Streak> getAllStreaks() {
+        return repository.findAll();
     }
 
 }

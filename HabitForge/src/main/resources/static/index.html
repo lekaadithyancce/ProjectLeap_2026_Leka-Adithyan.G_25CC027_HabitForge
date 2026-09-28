@@ -1,189 +1,282 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>HabitForge</title>
-    <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HabitForge — Dashboard</title>
+
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
 
 <div class="app">
 
+    <!-- SIDEBAR -->
     <aside class="sidebar">
 
         <div class="logo">
             <div class="logo-box">H</div>
+
             <div>
                 <h2>HabitForge</h2>
                 <span>Consistency tracker</span>
             </div>
         </div>
 
-        <div class="nav-title">Menu</div>
+        <div class="nav-title">
+            MENU
+        </div>
 
         <nav class="nav">
-            <a href="/index.html" class="active">⌂ Dashboard</a>
-            <a href="/habit.html">✓ Manage Habits</a>
-            <a href="/streak.html">🔥 Track Streak</a>
+
+            <a href="/index.html" class="active">
+                ⌂ Dashboard
+            </a>
+
+            <a href="/habit.html">
+                ✓ Manage Habits
+            </a>
+
+            <a href="/streak.html">
+                🔥 Track Streak
+            </a>
+
         </nav>
 
         <div class="sidebar-bottom">
+
             <div class="mini-card">
+
                 <p>Today's progress</p>
-                <h4>3 of 5 completed</h4>
+
+                <h4 id="miniProgress">
+                    0 of 0 completed
+                </h4>
+
             </div>
+
         </div>
 
     </aside>
 
+
+    <!-- MAIN CONTENT -->
     <main class="main">
 
+        <!-- TOP -->
         <div class="topbar">
+
             <div>
-                <h1>Good evening 👋</h1>
-                <p>Let's keep your momentum going.</p>
+
+                <h1 id="greeting">
+                    Good evening 👋
+                </h1>
+
+                <p>
+                    Let's keep your momentum going.
+                </p>
+
             </div>
 
-            <div class="profile">
-                <div class="avatar">L</div>
-            </div>
         </div>
 
+
+        <!-- HERO -->
         <section class="hero">
 
             <div class="hero-content">
-                <h2>Build better habits every day.</h2>
+
+                <h2>
+                    Build better habits every day.
+                </h2>
+
                 <p>
                     Track your daily routines, maintain streaks,
                     and turn small actions into long-term consistency.
                 </p>
-            </div>
 
-            <a href="/habit.html" class="hero-button">
-                + Add Habit
-            </a>
+                <a href="/habit.html" class="hero-button">
+                    ＋ Add Habit
+                </a>
+
+            </div>
 
         </section>
 
+
+        <!-- STATISTICS -->
         <section class="stats">
 
             <div class="card">
+
                 <div class="stat-top">
-                    <span class="stat-label">Total Habits</span>
-                    <div class="stat-icon">✓</div>
+
+                    <span class="stat-label">
+                        Total Habits
+                    </span>
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
                 </div>
 
-                <h3>5</h3>
-                <span class="stat-note">Active habits</span>
+                <h3 id="statTotal">
+                    0
+                </h3>
+
+                <span class="stat-note">
+                    Active habits
+                </span>
+
             </div>
 
+
             <div class="card">
+
                 <div class="stat-top">
-                    <span class="stat-label">Current Streak</span>
-                    <div class="stat-icon">🔥</div>
+
+                    <span class="stat-label">
+                        Current Streak
+                    </span>
+
+                    <div class="stat-icon">
+                        🔥
+                    </div>
+
                 </div>
 
-                <h3>12</h3>
-                <span class="stat-note">Days in a row</span>
+                <h3 id="statCurrent">
+                    0
+                </h3>
+
+                <span class="stat-note">
+                    Days in a row
+                </span>
+
             </div>
 
+
             <div class="card">
+
                 <div class="stat-top">
-                    <span class="stat-label">Best Streak</span>
-                    <div class="stat-icon">🏆</div>
+
+                    <span class="stat-label">
+                        Best Streak
+                    </span>
+
+                    <div class="stat-icon">
+                        🏆
+                    </div>
+
                 </div>
 
-                <h3>25</h3>
-                <span class="stat-note">Personal record</span>
+                <h3 id="statBest">
+                    0
+                </h3>
+
+                <span class="stat-note">
+                    Personal record
+                </span>
+
             </div>
 
+
             <div class="card">
+
                 <div class="stat-top">
-                    <span class="stat-label">Completion</span>
-                    <div class="stat-icon">◉</div>
+
+                    <span class="stat-label">
+                        Completion
+                    </span>
+
+                    <div class="stat-icon">
+                        ◉
+                    </div>
+
                 </div>
 
-                <h3>84%</h3>
-                <span class="stat-note">This week</span>
+                <h3 id="statCompletion">
+                    0%
+                </h3>
+
+                <span class="stat-note">
+                    This week
+                </span>
+
             </div>
 
         </section>
 
+
+        <!-- DASHBOARD CONTENT -->
         <section class="dashboard-grid">
 
+
+            <!-- TODAY'S HABITS -->
             <div class="panel">
 
                 <div class="panel-header">
-                    <h2>Today's Habits</h2>
-                    <a href="/habit.html">View all</a>
+
+                    <h2>
+                        Today's Habits
+                    </h2>
+
+                    <a href="/habit.html">
+                        View all
+                    </a>
+
                 </div>
 
-                <div class="habit-row">
-                    <div class="habit-left">
-                        <div class="habit-icon">💧</div>
-                        <div>
-                            <div class="habit-name">Drink Water</div>
-                            <div class="habit-meta">8 glasses • Daily</div>
-                        </div>
-                    </div>
 
-                    <button class="complete-btn">Complete</button>
-                </div>
+                <div id="habitList">
 
-                <div class="habit-row">
-                    <div class="habit-left">
-                        <div class="habit-icon">🏃</div>
-                        <div>
-                            <div class="habit-name">Exercise</div>
-                            <div class="habit-meta">30 minutes • Daily</div>
-                        </div>
-                    </div>
+                    <p class="empty">
+                        Loading habits…
+                    </p>
 
-                    <button class="complete-btn">Complete</button>
-                </div>
-
-                <div class="habit-row">
-                    <div class="habit-left">
-                        <div class="habit-icon">📚</div>
-                        <div>
-                            <div class="habit-name">Read Book</div>
-                            <div class="habit-meta">20 pages • Daily</div>
-                        </div>
-                    </div>
-
-                    <button class="complete-btn">Completed</button>
-                </div>
-
-                <div class="habit-row">
-                    <div class="habit-left">
-                        <div class="habit-icon">🧘</div>
-                        <div>
-                            <div class="habit-name">Meditation</div>
-                            <div class="habit-meta">10 minutes • Daily</div>
-                        </div>
-                    </div>
-
-                    <button class="complete-btn">Complete</button>
                 </div>
 
             </div>
 
+
+            <!-- STREAK -->
             <div class="panel">
 
                 <div class="panel-header">
-                    <h2>Current Streak</h2>
-                    <a href="/streak.html">Update</a>
+
+                    <h2>
+                        Current Streak
+                    </h2>
+
+                    <a href="/streak.html">
+                        Update
+                    </a>
+
                 </div>
+
 
                 <div class="streak-box">
-                    <div class="streak-ring">
-                        <strong>12</strong>
-                        <span>DAY STREAK</span>
+
+                    <div class="streak-ring" id="ring">
+
+                        <strong id="ringValue">
+                            0
+                        </strong>
+
+                        <span>
+                            DAY STREAK
+                        </span>
+
                     </div>
+
                 </div>
 
-                <p style="text-align:center;color:#8b93a7;">
-                    Keep going to beat your best of 25 days.
+
+                <p id="streakNote" class="empty">
+                    Complete a habit today to start your streak.
                 </p>
 
             </div>
@@ -194,6 +287,10 @@
 
 </div>
 
-</body>
 
+<script src="/js/api.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/dashboard.js"></script>
+
+</body>
 </html>
