@@ -1,39 +1,203 @@
-body{
-    font-family:Arial,sans-serif;
-    background:#f4f4f4;
-    margin:0;
-    padding:0;
+* {
+    box-sizing: border-box;
 }
 
-.container{
-    width:80%;
-    margin:50px auto;
-    background:white;
-    padding:30px;
-    text-align:center;
-    border-radius:10px;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background:
+            radial-gradient(circle at top left, #c7d2fe 0%, transparent 35%),
+            radial-gradient(circle at bottom right, #bae6fd 0%, transparent 35%),
+            linear-gradient(135deg, #eef2ff, #f8fafc);
+    color: #1e293b;
 }
 
-h1{
-    color:#333;
+header {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    text-align: center;
+    padding: 45px 20px;
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.25);
 }
 
-input,button{
-    padding:10px;
-    margin:5px;
+header h1 {
+    margin: 0;
+    font-size: 42px;
+    font-weight: bold;
 }
 
-button{
-    background:#333;
-    color:white;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
+header p {
+    margin-top: 12px;
+    font-size: 17px;
+    opacity: 0.9;
 }
 
-a{
-    display:inline-block;
-    margin:10px;
-    text-decoration:none;
-    color:#333;
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 28px;
+    width: 30%;
+    min-width: 220px;
+    text-align: center;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.16);
+}
+
+.card h2 {
+    margin: 0;
+    font-size: 36px;
+    color: #4f46e5;
+}
+
+.card p {
+    color: #64748b;
+}
+
+.menu {
+    text-align: center;
+    margin: 35px 0;
+}
+
+.menu a {
+    display: inline-block;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    padding: 13px 26px;
+    margin: 6px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    box-shadow: 0 6px 15px rgba(79, 70, 229, 0.25);
+}
+
+.menu a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+}
+
+.habit-list,
+.form-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    margin-top: 25px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
+}
+
+.habit-list h2,
+.form-card h2 {
+    margin-top: 0;
+    color: #334155;
+}
+
+.habit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px 20px;
+    margin-top: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.habit:hover {
+    background: #eef2ff;
+    transform: translateX(4px);
+}
+
+button {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+input {
+    padding: 13px 15px;
+    width: 42%;
+    margin: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    outline: none;
+    font-size: 15px;
+    background: white;
+}
+
+input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.back {
+    display: inline-block;
+    margin-top: 25px;
+    text-decoration: none;
+    color: #4f46e5;
+    font-weight: bold;
+}
+
+.streak-result {
+    margin-top: 20px;
+    padding: 22px;
+    background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+    border-radius: 12px;
+    border-left: 5px solid #6366f1;
+}
+
+.streak-result h3 {
+    margin-top: 0;
+    color: #4f46e5;
+}
+
+@media (max-width: 700px) {
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    input {
+        width: 90%;
+    }
+
+    .habit {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
 }

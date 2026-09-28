@@ -7,33 +7,44 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Streak {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+
     private Long habitId;
     private int currentStreak;
     private int bestStreak;
-    public Long getHabitId()
-    {
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long getHabitId() {
         return habitId;
     }
-    public void setHabitId()
-    {
-        this.habitId=habitId;
-    }
-    public int getCurrentStreak()
-    {
+
+    public int getCurrentStreak() {
         return currentStreak;
     }
-    public void setCurrentStreak(int currentStreak)
-    {
-        this.currentStreak=currentStreak;
-    }
-    public int getBestStreak()
-    {
+
+    public int getBestStreak() {
         return bestStreak;
     }
-    public void setBestStreak(int bestSteak)
-    {
+
+    public void setId(Long id) {
+        this.id=id;
+    }
+
+    public void setHabitId(Long habitId) {
+        this.habitId=habitId;
+    }
+
+    public void setCurrentStreak(int currentStreak) {
+        this.currentStreak=currentStreak;
+    }
+
+    public void setBestStreak(int bestStreak) {
         this.bestStreak=bestStreak;
     }
 }

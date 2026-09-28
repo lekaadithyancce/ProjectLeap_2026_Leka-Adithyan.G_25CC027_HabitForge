@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Track Streak</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Track Streak</h1>
+    <p>Monitor your habit consistency</p>
+</header>
+
+<div class="container">
+
+    <div class="form-card">
+        <h2>Update Streak</h2>
+
+        <input type="number" id="habitId" placeholder="Habit ID">
+        <input type="number" id="currentStreak" placeholder="Current Streak">
+
+        <button onclick="updateStreak()">Update</button>
+
+        <div id="result"></div>
+    </div>
+
+    <a class="back" href="/index.html">Back to Home</a>
+
+</div>
+
+<script>
+    function updateStreak() {
+
+        let habitId=document.getElementById("habitId").value;
+        let currentStreak=document.getElementById("currentStreak").value;
+
+        let streak={
+            habitId:parseInt(habitId),
+            currentStreak:parseInt(currentStreak),
+            bestStreak:0
+        };
+
+        fetch("/streaks",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(streak)
+        })
+            .then(response=>response.json())
+            .then(data=>{
+
+                document.getElementById("result").innerHTML=
+                    "<div class='streak-result'>" +
+                    "<h3>Streak Updated!</h3>" +
+                    "<p>Current Streak: " + data.currentStreak + "</p>" +
+                    "<p>Best Streak: " + data.bestStreak + "</p>" +
+                    "</div>";
+
+            });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Habits</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Manage Habits</h1>
+    <p>Add and view your daily habits</p>
+</header>
+
+<div class="container">
+
+    <div class="form-card">
+        <h2>Add New Habit</h2>
+
+        <input type="text" id="name" placeholder="Enter habit name">
+        <input type="text" id="frequency" placeholder="Daily / Weekly">
+
+        <button onclick="addHabit()">Add Habit</button>
+    </div>
+
+    <div class="habit-list">
+        <h2>My Habits</h2>
+        <div id="habits"></div>
+    </div>
+
+    <a class="back" href="/index.html">Back to Home</a>
+
+</div>
+
+<script>
+    function addHabit() {
+
+        let habit = {
+            name: document.getElementById("name").value,
+            frequency: document.getElementById("frequency").value
+        };
+
+        fetch("/habits", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(habit)
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert("Habit added successfully");
+                document.getElementById("name").value = "";
+                document.getElementById("frequency").value = "";
+                loadHabits();
+            });
+    }
+
+    function loadHabits() {
+
+        fetch("/habits")
+            .then(response => response.json())
+            .then(data => {
+
+                let output = "";
+
+                data.forEach(habit => {
+                    output += `
+                <div class="habit">
+                    <span>${habit.name}</span>
+                    <span>${habit.frequency}</span>
+                </div>
+            `;
+                });
+
+                document.getElementById("habits").innerHTML = output;
+            });
+    }
+
+    loadHabits();
+</script>
+
+</body>
+</html>
