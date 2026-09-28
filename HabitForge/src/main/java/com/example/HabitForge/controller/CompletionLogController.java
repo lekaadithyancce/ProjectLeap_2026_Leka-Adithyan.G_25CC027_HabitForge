@@ -2,10 +2,7 @@ package com.example.HabitForge.controller;
 
 import com.example.HabitForge.model.CompletionLog;
 import com.example.HabitForge.service.CompletionLogService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +15,7 @@ public class CompletionLogController {
         this.service=service;
     }
     @PostMapping
-    public CompletionLog addCompletionLog(@RequestMapping CompletionLog logs)
+    public CompletionLog addCompletionLog(@RequestBody CompletionLog logs)
     {
         return service.addLog(logs);
     }
