@@ -16,7 +16,7 @@ public class CompletionLogService {
     {
         return repository.save(log);
     }
-    public List<CompletionLog> getLog()
+    public List<CompletionLog> getLogs()
     {
         return repository.findAll();
     }
