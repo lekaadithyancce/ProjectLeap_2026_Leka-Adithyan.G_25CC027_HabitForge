@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Habits | HabitForge</title>
+
+    <link rel="stylesheet"
+          href="/css/style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="brand">
+        <div class="brand-icon">H</div>
+
+        <div>
+            <h1>HabitForge</h1>
+            <span>Build better habits</span>
+        </div>
+    </div>
+
+    <nav class="navigation">
+
+        <a href="/index.html">
+            Dashboard
+        </a>
+
+        <a href="/habit.html"
+           class="active">
+            Habits
+        </a>
+
+        <a href="/streak.html">
+            Streaks
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="page">
+
+    <section class="page-header">
+
+        <div>
+
+            <p class="eyebrow">
+                HABIT MANAGEMENT
+            </p>
+
+            <h2>
+                Manage Habits
+            </h2>
+
+            <p>
+                Create, organize, and maintain
+                your daily routines.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="habit-card">
+
+        <div class="card-header">
+
+            <div>
+                <h3>
+                    Create New Habit
+                </h3>
+
+                <p>
+                    Add a habit you want to
+                    build consistently.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label for="name">
+                    Habit Name
+                </label>
+
+                <input
+                        type="text"
+                        id="name"
+                        placeholder="e.g. Read a book"
+                        autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="frequency">
+                    Frequency
+                </label>
+
+                <select id="frequency">
+
+                    <option value="Daily">
+                        Daily
+                    </option>
+
+                    <option value="Weekly">
+                        Weekly
+                    </option>
+
+                    <option value="Weekdays">
+                        Weekdays
+                    </option>
+
+                    <option value="Monthly">
+                        Monthly
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="button-wrapper">
+
+                <button
+                        type="button"
+                        id="addBtn"
+                        class="primary-btn">
+
+                    + Add Habit
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="habit-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+                    My Habits
+                </h3>
+
+                <p>
+                    Your currently active habits
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div id="habits"
+             class="habits-list">
+
+            <div class="empty">
+                Loading habits…
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        © 2026 HabitForge · Build consistency every day
+    </p>
+
+</footer>
+
+
+<script src="/js/api.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/habits.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HabitForge — Track Streak</title>
+
+    <link rel="stylesheet"
+          href="/css/style.css">
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-box">
+                H
+            </div>
+
+            <div>
+
+                <h2>
+                    HabitForge
+                </h2>
+
+                <span>
+                    Consistency tracker
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-title">
+            MENU
+        </div>
+
+
+        <nav class="nav">
+
+            <a href="/index.html">
+                ⌂ Dashboard
+            </a>
+
+            <a href="/habit.html">
+                ✓ Manage Habits
+            </a>
+
+            <a href="/streak.html"
+               class="active">
+
+                🔥 Track Streak
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>
+                    Track Streak
+                </h1>
+
+                <p>
+                    Monitor your habit consistency
+                    and personal records.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- UPDATE STREAK -->
+        <div class="panel form-panel">
+
+            <div class="panel-header">
+
+                <h2>
+                    Update Streak
+                </h2>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <div class="input-group">
+
+                    <label for="habitSelect">
+                        Habit
+                    </label>
+
+                    <select id="habitSelect">
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="currentStreak">
+                        Current Streak
+                    </label>
+
+                    <input
+                            type="number"
+                            id="currentStreak"
+                            min="0"
+                            placeholder="Example: 20">
+
+                </div>
+
+            </div>
+
+
+            <button
+                    class="primary-btn"
+                    id="updateBtn">
+
+                Update Streak
+
+            </button>
+
+
+            <div id="result"
+                 class="result">
+            </div>
+
+        </div>
+
+
+        <!-- STREAK INFORMATION -->
+        <div class="panel"
+             style="margin-top:22px">
+
+            <div class="panel-header">
+
+                <h2>
+                    Streak Information
+                </h2>
+
+            </div>
+
+
+            <div class="stats"
+                 style="grid-template-columns:repeat(2,1fr)">
+
+
+                <div class="card">
+
+                    <div class="stat-top">
+
+                        <span class="stat-label">
+                            Saved Current Streak
+                        </span>
+
+                        <div class="stat-icon">
+                            🔥
+                        </div>
+
+                    </div>
+
+                    <h3 id="currentValue">
+                        -
+                    </h3>
+
+                    <span class="stat-note">
+                        Days
+                    </span>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="stat-top">
+
+                        <span class="stat-label">
+                            Best Streak
+                        </span>
+
+                        <div class="stat-icon">
+                            🏆
+                        </div>
+
+                    </div>
+
+                    <h3 id="bestValue">
+                        -
+                    </h3>
+
+                    <span class="stat-note">
+                        Personal record
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- ALL HABITS -->
+        <div class="panel"
+             style="margin-top:22px">
+
+            <div class="panel-header">
+
+                <h2>
+                    All Habits
+                </h2>
+
+            </div>
+
+            <div id="streakList">
+            </div>
+
+        </div>
+
+
+        <a class="back"
+           href="/index.html">
+
+            ← Back to Dashboard
+
+        </a>
+
+    </main>
+
+</div>
+
+
+<script src="/js/api.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/streaks.js"></script>
+
+</body>
+</html>
