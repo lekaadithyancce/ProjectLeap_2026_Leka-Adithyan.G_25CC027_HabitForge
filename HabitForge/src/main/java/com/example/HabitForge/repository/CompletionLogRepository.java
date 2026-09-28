@@ -1,4 +1,7 @@
 package com.example.HabitForge.repository;
 
-public interface CompletionLogRepository {
+import com.example.HabitForge.model.CompletionLog;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CompletionLogRepository extends JpaRepository<CompletionLog,Long> {
 }
